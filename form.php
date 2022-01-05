@@ -20,7 +20,7 @@
 		<title>Survey Form</title>
 		<style>
 			body{
-				margin-top: 100px;
+				margin-top: 25px;
 				margin-bottom: auto;
 				text-align: center;
 			}
@@ -71,26 +71,29 @@
 	<body>
 		<form action="connect.php" method="post">
 			<fieldset>
+				<!--Age input-->
 				<div>
 					<label for="age">Age:</label>
-					<input id="age" name="age">
+					<input id="age" name="age" type="number" required>
 				</div>
+				<!--Gender input-->
 				<div class="selection">
 					<p>Gender:</p>
 
-					<input type="radio" name="gender" id="genderM" value="male">
+					<input type="radio" name="gender" id="genderM" value="male" required>
 					<label for="genderM">Male</label>
 
-					<input type="radio" name="gender" id="genderF" value="female">
+					<input type="radio" name="gender" id="genderF" value="female" required>
 					<label for="genderF">Female</label>
 
-					<input type="radio" name="gender" id="genderNB" value="non-binary">
+					<input type="radio" name="gender" id="genderNB" value="non-binary" required>
 					<label for="genderNB">Non-Binary</label>
 				</div>
-
+				<!--Other questions-->
 				<div class="responses">
 					<div>
 						<p><?php echo htmlspecialchars($texts[10]['msg']);?></p>
+						<p><?php echo htmlspecialchars($texts[14]['msg']);?></p>
 
 						<input type="radio" name="resp1" id="resp11" value=1>
 						<label for="resp11">1</label>
@@ -113,6 +116,7 @@
 
 					<div>
 						<p><?php echo htmlspecialchars($texts[11]['msg']);?></p>
+						<p><?php echo htmlspecialchars($texts[14]['msg']);?></p>
 
 						<input type="radio" name="resp2" id="resp21" value=1>
 						<label for="resp21">1</label>
@@ -135,6 +139,7 @@
 
 					<div>
 						<p><?php echo htmlspecialchars($texts[12]['msg']);?></p>
+						<p><?php echo htmlspecialchars($texts[14]['msg']);?></p>
 
 						<input type="radio" name="resp3" id="resp31" value=1>
 						<label for="resp31">1</label>
@@ -157,6 +162,7 @@
 
 					<div>
 						<p><?php echo htmlspecialchars($texts[13]['msg']);?></p>
+						<p><?php echo htmlspecialchars($texts[14]['msg']);?></p>
 
 						<input type="radio" name="resp4" id="resp41" value=1>
 						<label for="resp41">1</label>
@@ -177,7 +183,7 @@
 						<label for="resp46">6</label>
 					</div>
 				</div>
-
+				<!--Submission button-->
 				<div>
 					<button type="submit">Submit</button>
 				</div>
