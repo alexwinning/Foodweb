@@ -215,7 +215,7 @@
 					<td><?php echo '<img id = "'.htmlspecialchars($protein[4]['image_name']).'" src="data:image;base64, '.base64_encode($protein[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 			</div>
-			<!--veg image column-->
+			<!--Veg image column-->
 			<div class = 'column veggie'>
 				<h3><?php echo htmlspecialchars($texts[4]['msg']); ?></h3>
 				<div class = 'imgs'>
@@ -267,7 +267,21 @@
 			<div class = 'column web'>
 				<!--Drop zone-->
 				<div class = 'drop-zone'>
-					<span class = 'drop-zone__prompt'><?php echo '<img src="data:image;base64, '.base64_encode($plate[0]['image_url']).'" alt = "image" style = "width: 200px; height: 200px;">';?></span>
+					<!--Randomize drop zone image-->
+					<script>
+						var randVal = Math.floor(Math.random() + 0.5);
+						document.cookie = "randVal=" + randVal;
+						if (randVal == 0){
+							var plateType = 'P';
+						}
+						else {
+							var plateType = 'U';
+						}
+						document.cookie = "plateVal=" + plateType;
+					</script>
+					<?php $randVal = $_COOKIE["randVal"]; ?>
+					<!--Drop zone image-->
+					<span class = 'drop-zone__prompt'><?php echo '<img src="data:image;base64, '.base64_encode($plate[$randVal]['image_url']).'" alt = "image" style = "width: 200px; height: 200px;">';?></span>
 					<input type='file' name='myFile' aria-labelledby= "Food" class='drop-zone__input'>
 				</div>
 				<script src="main.js"></script>
