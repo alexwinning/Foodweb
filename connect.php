@@ -6,6 +6,7 @@
 	$resp3 = $_POST['resp3'];
 	$resp4 = $_POST['resp4'];
 	$selections = $_COOKIE['selection'];
+	$plateVal = $_COOKIE['plateVal'];
 
 	$conn = mysqli_connect('localhost', 'awinning', 'Foodwebproj', 'foodweb');
 
@@ -15,9 +16,9 @@
 	}
 	else{
 		$stmt = $conn->prepare("INSERT INTO user_resp(age, gender, calorieConsump, 
-		fatConsump, sugarConsump, snackConsump, selectedFoods)
-		values(?, ?, ?, ?, ?, ?, ?)");
-		$stmt->bind_param("isiiiis", $age, $gender, $resp1, $resp2, $resp3, $resp4, $selections);
+		fatConsump, sugarConsump, snackConsump, selectedFoods, plateType)
+		values(?, ?, ?, ?, ?, ?, ?, ?)");
+		$stmt->bind_param("isiiiiss", $age, $gender, $resp1, $resp2, $resp3, $resp4, $selections, $plateVal);
 		$stmt->execute();
 		echo "Thank You!";
 		$stmt->close();
