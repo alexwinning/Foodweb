@@ -9,4 +9,4 @@ eating habits. These responses are then stored in the MySQL database.
 
 This project is implemented in HTML, PHP, and Javascript. It features PHP/MySQL connectivity as well
 as drag and drop functionality. The website and responses generate from it will be used for future
-research. The fully implemented website can be found at: 
+research. The fully implemented website can be found at: *will be inserted once fully implemented*
