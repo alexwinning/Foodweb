@@ -14,27 +14,33 @@
 	mysqli_free_result($result);
 
 	//Retrieve Carb Food Images
-	$sql2 = "SELECT image_id, image_name, image_url FROM images WHERE image_cat = 'Carbs'";
+	$sql2 = "SELECT image_id, image_name, image_url, image_cat FROM images WHERE image_cat = 'Carbs'";
 	$result = mysqli_query($conn, $sql2);
 	$carbs = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	mysqli_free_result($result);
 
-	$sql3 = "SELECT image_id, image_name, image_url FROM images WHERE image_cat = 'Dairy'";
+
+	//Dairy Images
+	$sql3 = "SELECT image_id, image_name, image_url, image_cat FROM images WHERE image_cat = 'Dairy'";
 	$result = mysqli_query($conn, $sql3);
 	$dairy = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	mysqli_free_result($result);
 
-	$sql4 = "SELECT image_id, image_name, image_url FROM images WHERE image_cat = 'Protein'";
+
+	//Protein Images
+	$sql4 = "SELECT image_id, image_name, image_url, image_cat FROM images WHERE image_cat = 'Protein'";
 	$result = mysqli_query($conn, $sql4);
 	$protein = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	mysqli_free_result($result);
 
-	$sql5 = "SELECT image_id, image_name, image_url FROM images WHERE image_cat = 'Vegetables'";
+	//Veg Images
+	$sql5 = "SELECT image_id, image_name, image_url, image_cat FROM images WHERE image_cat = 'Vegetables'";
 	$result = mysqli_query($conn, $sql5);
 	$veg = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	mysqli_free_result($result);
 
-	$sql6 = "SELECT image_id, image_name, image_url FROM images WHERE image_cat = 'Fruit'";
+	//Fruit Images
+	$sql6 = "SELECT image_id, image_name, image_url, image_cat FROM images WHERE image_cat = 'Fruit'";
 	$result = mysqli_query($conn, $sql6);
 	$fruit = mysqli_fetch_all($result, MYSQLI_ASSOC);
 	mysqli_free_result($result);
@@ -132,6 +138,10 @@
 			.drop-zone__input{
 				display: none;
 			}
+			.drop-zone__prompt{
+				position: absolute;
+				z-index: -2;
+			}
 		</style>
 	</head>
 	<body>
@@ -148,23 +158,23 @@
 				<h3><?php echo htmlspecialchars($texts[1]['msg']); ?></h3>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($carbs[0]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($carbs[0]['image_name']).'" src="data:image;base64, '.base64_encode($carbs[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($carbs[0]['image_cat']).'(a)" src="data:image;base64, '.base64_encode($carbs[0]['image_url']).'" alt = "Rice" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($carbs[1]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($carbs[1]['image_name']).'" src="data:image;base64, '.base64_encode($carbs[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($carbs[1]['image_cat']).'(b)" src="data:image;base64, '.base64_encode($carbs[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($carbs[2]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($carbs[2]['image_name']).'" src="data:image;base64, '.base64_encode($carbs[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($carbs[2]['image_cat']).'(c)" src="data:image;base64, '.base64_encode($carbs[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($carbs[3]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($carbs[3]['image_name']).'" src="data:image;base64, '.base64_encode($carbs[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($carbs[3]['image_cat']).'(d)" src="data:image;base64, '.base64_encode($carbs[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($carbs[4]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($carbs[4]['image_name']).'" src="data:image;base64, '.base64_encode($carbs[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($carbs[4]['image_cat']).'(e)" src="data:image;base64, '.base64_encode($carbs[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 			</div>
 			<!--Dairy image column-->
@@ -172,23 +182,23 @@
 				<h3><?php echo htmlspecialchars($texts[2]['msg']); ?></h3>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($dairy[0]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($dairy[0]['image_name']).'" src="data:image;base64, '.base64_encode($dairy[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($dairy[0]['image_cat']).'(a)" src="data:image;base64, '.base64_encode($dairy[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($dairy[1]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($dairy[1]['image_name']).'" src="data:image;base64, '.base64_encode($dairy[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($dairy[1]['image_cat']).'(b)" src="data:image;base64, '.base64_encode($dairy[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($dairy[2]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($dairy[2]['image_name']).'" src="data:image;base64, '.base64_encode($dairy[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($dairy[2]['image_cat']).'(c)" src="data:image;base64, '.base64_encode($dairy[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($dairy[3]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($dairy[3]['image_name']).'" src="data:image;base64, '.base64_encode($dairy[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($dairy[3]['image_cat']).'(d)" src="data:image;base64, '.base64_encode($dairy[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($dairy[4]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($dairy[4]['image_name']).'" src="data:image;base64, '.base64_encode($dairy[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($dairy[4]['image_cat']).'(e)" src="data:image;base64, '.base64_encode($dairy[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 			</div>
 			<!--Protein image column-->
@@ -196,23 +206,23 @@
 				<h3><?php echo htmlspecialchars($texts[3]['msg']); ?></h3>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($protein[0]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($protein[0]['image_name']).'" src="data:image;base64, '.base64_encode($protein[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($protein[0]['image_cat']).'(a)" src="data:image;base64, '.base64_encode($protein[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($protein[1]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($protein[1]['image_name']).'" src="data:image;base64, '.base64_encode($protein[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($protein[1]['image_cat']).'(b)" src="data:image;base64, '.base64_encode($protein[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($protein[2]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($protein[2]['image_name']).'" src="data:image;base64, '.base64_encode($protein[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($protein[2]['image_cat']).'(c)" src="data:image;base64, '.base64_encode($protein[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($protein[3]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($protein[3]['image_name']).'" src="data:image;base64, '.base64_encode($protein[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($protein[3]['image_cat']).'(d)" src="data:image;base64, '.base64_encode($protein[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($protein[4]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($protein[4]['image_name']).'" src="data:image;base64, '.base64_encode($protein[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($protein[4]['image_cat']).'(e)" src="data:image;base64, '.base64_encode($protein[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 			</div>
 			<!--Veg image column-->
@@ -220,23 +230,23 @@
 				<h3><?php echo htmlspecialchars($texts[4]['msg']); ?></h3>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($veg[0]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($veg[0]['image_name']).'" src="data:image;base64, '.base64_encode($veg[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($veg[0]['image_cat']).'(a)" src="data:image;base64, '.base64_encode($veg[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($veg[1]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($veg[1]['image_name']).'" src="data:image;base64, '.base64_encode($veg[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($veg[1]['image_cat']).'(b)" src="data:image;base64, '.base64_encode($veg[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($veg[2]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($veg[2]['image_name']).'" src="data:image;base64, '.base64_encode($veg[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($veg[2]['image_cat']).'(c)" src="data:image;base64, '.base64_encode($veg[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($veg[3]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($veg[3]['image_name']).'" src="data:image;base64, '.base64_encode($veg[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($veg[3]['image_cat']).'(d)" src="data:image;base64, '.base64_encode($veg[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($veg[4]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($veg[4]['image_name']).'" src="data:image;base64, '.base64_encode($veg[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($veg[4]['image_cat']).'(e)" src="data:image;base64, '.base64_encode($veg[4]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 			</div>
 			<!--Fruit image column-->
@@ -244,44 +254,59 @@
 				<h3><?php echo htmlspecialchars($texts[5]['msg']); ?></h3>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($fruit[0]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($fruit[0]['image_name']).'" src="data:image;base64, '.base64_encode($fruit[0]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($fruit[0]['image_cat']).'(a)" src="data:image;base64, '.base64_encode($fruit[0]['image_url']).'" alt = "Apple" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($fruit[1]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($fruit[1]['image_name']).'" src="data:image;base64, '.base64_encode($fruit[1]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($fruit[1]['image_cat']).'(b)" src="data:image;base64, '.base64_encode($fruit[1]['image_url']).'" alt = "Banana" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($fruit[2]['image_name']); ?></p>
-					<td><?php echo '<img id ="'.htmlspecialchars($fruit[2]['image_name']).'" src="data:image;base64, '.base64_encode($fruit[2]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id ="'.htmlspecialchars($fruit[2]['image_cat']).'(c)" src="data:image;base64, '.base64_encode($fruit[2]['image_url']).'" alt = "Grapes" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($fruit[3]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($fruit[3]['image_name']).'" src="data:image;base64, '.base64_encode($fruit[3]['image_url']).'" alt = "image" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($fruit[3]['image_cat']).'(d)" src="data:image;base64, '.base64_encode($fruit[3]['image_url']).'" alt = "Watermelon" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 				<div class = 'imgs'>
 					<p><?php echo htmlspecialchars($fruit[4]['image_name']); ?></p>
-					<td><?php echo '<img id = "'.htmlspecialchars($fruit[4]['image_name']).'" src="data:image;base64, '.base64_encode($fruit[4]['image_url']).'" alt = "image" draggable="true" style = "width: 50px; height: 50px;">';?></td>
+					<td><?php echo '<img id = "'.htmlspecialchars($fruit[4]['image_cat']).'(e)" src="data:image;base64, '.base64_encode($fruit[4]['image_url']).'" alt = "Strawberries" draggable="true" style = "width: 50px; height: 50px;">';?></td>
 				</div>
 			</div>
 			<!--Drop zone column-->
 			<div class = 'column web'>
 				<!--Drop zone-->
-				<div class = 'drop-zone'>
-					<!--Randomize drop zone image-->
-					<script>
-						var randVal = Math.floor(Math.random() + 0.5);
-						document.cookie = "randVal=" + randVal;
-						if (randVal == 0){
-							var plateType = 'P';
-						}
-						else {
-							var plateType = 'U';
-						}
-						document.cookie = "plateVal=" + plateType;
-					</script>
-					<?php $randVal = $_COOKIE["randVal"]; ?>
+				<!--Randomize drop zone image-->
+				<script>
+					var randVal = Math.floor(Math.random() + 0.5);
+					document.cookie = "randVal=" + randVal;
+					if (randVal == 0){
+						var plateType = 'P';
+					}
+					else {
+						var plateType = 'U';
+					}					
+					document.cookie = "plateVal=" + plateType;
+				</script>
+				<?php $randVal = $_COOKIE["randVal"]; ?>
+				<div class = 'drop-zone' ondrop="drop(event)" ondragover="allowDrop(event)">
+					<script>    
+						function allowDrop(ev) {    
+								 ev.preventDefault();    
+						}    
+    
+						function drag(ev) {    
+						ev.dataTransfer.setData("text", ev.target.id);    
+						}    
+    
+						function drop(ev) {    
+							ev.preventDefault();    
+							var data = ev.dataTransfer.getData("text");    
+							ev.target.appendChild(document.getElementById(data));    
+						}    
+					</script>  
 					<!--Drop zone image-->
-					<span class = 'drop-zone__prompt'><?php echo '<img src="data:image;base64, '.base64_encode($plate[$randVal]['image_url']).'" alt = "image" style = "width: 200px; height: 200px;">';?></span>
+					<span class = 'drop-zone__prompt'><?php echo '<img id = "'.htmlspecialchars($fruit[4]['image_cat']).'(e)" src="data:image;base64, '.base64_encode($plate[$randVal]['image_url']).'" alt = "Plate" draggable="true" style = "width: 200px; height: 200px;">';?></span>
 					<input type='file' name='myFile' aria-labelledby= "Food" class='drop-zone__input'>
 				</div>
 				<script src="main.js"></script>
